@@ -1,9 +1,13 @@
-import React from 'react'
+import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from './counterSlice'
 import {selectCounterValue} from './selectors';
 
+console.log('loading Counter Modal Content')
 export function Counter() {
+	useEffect(() => {
+		console.log('Rendering Counter Modal Content');
+	}, []);
   const count = useSelector(selectCounterValue)
   const dispatch = useDispatch()
 

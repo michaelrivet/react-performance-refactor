@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
 import { Editor as EditorDraftJS, RichUtils } from "draft-js";
 import { useSelector, useDispatch } from "react-redux";
 import {change, reset} from './editorSlice';
-import { useEffect } from "react";
 
+console.log('loading Editor Modal Content');
 const Editor = () => {
 	useEffect(() => {
-		console.log('Rendering Editor');
+		console.log('Rendering Editor Modal Content');
 	}, []);
 	const dispatch = useDispatch();
 	const editorState = useSelector(state => state.editor.editorState);

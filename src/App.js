@@ -5,7 +5,7 @@ import {
 } from '@sproutsocial/racine';
 import '@sproutsocial/racine/includeIcons';
 import store from './redux/store';
-import {AppContent} from './App/AppContent';
+import {AppContainer} from './App/AppContainer';
 import {Layout} from './Layout/Layout';
 import './App.css';
 
@@ -15,7 +15,7 @@ function App() {
       <ThemeProvider theme={sproutDarkTheme}>
         <div className="App">
         <Layout>
-          <AppContent />
+          <AppContainer />
         </Layout>
         </div>
       </ThemeProvider>

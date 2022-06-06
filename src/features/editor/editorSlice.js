@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { EditorState } from "draft-js";
 
+console.log('loading editorSlice');
 export const editorSlice = createSlice({
   name: 'counter',
   initialState: {

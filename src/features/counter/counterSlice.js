@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {selectCounterValue} from './selectors';
 
+console.log('loading counterSlice');
 export const counterSlice = createSlice({
   name: 'counter',
   initialState: {

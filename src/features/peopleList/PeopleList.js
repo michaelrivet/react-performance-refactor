@@ -1,21 +1,14 @@
-
-import { Loader } from '@sproutsocial/racine';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {List} from 'react-virtualized';
 
-export const AppContent = () => {
-
-    const [people, setPeople] = useState([]);
+console.log('loading PeopleList');
+export const PeopleList = () => {
     useEffect(() => {
-      async function fetchPeople() {
-        const respose = await fetch('https://swapi.dev/api/people/');
-        const result = await respose.json()
-        console.log(result.results);
-        setPeople(result.results);
-      }
-  
-      fetchPeople();
+        console.log('rendering PeopleList');
     }, []);
+
+    const people = useSelector(state => state.people?.people);
 
     function rowRenderer({
         key, // Unique key within array of rows
@@ -31,10 +24,6 @@ export const AppContent = () => {
         );
     }
 
-    if(people.length === 0) {
-        return <Loader delay={false} />;
-    }
-
     return <List
         width={300}
         height={300}
@@ -43,3 +32,5 @@ export const AppContent = () => {
         rowRenderer={rowRenderer}
     />
 }
+
+export default PeopleList;
