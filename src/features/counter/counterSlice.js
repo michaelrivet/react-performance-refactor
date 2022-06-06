@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import {selectCounterValue} from './selectors';
 
 export const counterSlice = createSlice({
   name: 'counter',
@@ -17,7 +18,9 @@ export const counterSlice = createSlice({
       state.value -= 1
     },
     incrementByAmount: (state, action) => {
-      state.value += action.payload
+      // This is dumb for something so simple but demonstrates needing to 
+      const currentValue = selectCounterValue(state);
+      state.value = currentValue + action.payload;
     },
   },
 })

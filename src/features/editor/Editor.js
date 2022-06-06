@@ -1,68 +1,71 @@
 import React from "react";
-import { Editor as EditorDraftJS, EditorState, RichUtils } from "draft-js";
+import { Editor as EditorDraftJS, RichUtils } from "draft-js";
+import { useSelector, useDispatch } from "react-redux";
+import {change, reset} from './editorSlice';
+import { useEffect } from "react";
 
-class Editor extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			editorState: EditorState.createEmpty()
-		};
-	}
+const Editor = () => {
+	useEffect(() => {
+		console.log('Rendering Editor');
+	}, []);
+	const dispatch = useDispatch();
+	const editorState = useSelector(state => state.editor.editorState);
 
-	onChange = editorState => {
-		this.setState({
-			editorState
-		});
+	const onChange = editorState => {
+		dispatch(change(editorState));
 	};
 
-	handleKeyCommand = command => {
+	const handleReset = () => {
+		dispatch(reset());
+	}
+
+	const handleKeyCommand = command => {
 		const newState = RichUtils.handleKeyCommand(
-			this.state.editorState,
+			editorState,
 			command
 		);
 		if (newState) {
-			this.onChange(newState);
+			onChange(newState);
 			return "handled";
 		}
 		return "not-handled";
 	};
 
-	onUnderlineClick = () => {
-		this.onChange(
-			RichUtils.toggleInlineStyle(this.state.editorState, "UNDERLINE")
+	const onUnderlineClick = () => {
+		onChange(
+			RichUtils.toggleInlineStyle(editorState, "UNDERLINE")
 		);
 	};
 
-	onBoldClick = () => {
-		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, "BOLD"));
+	const onBoldClick = () => {
+		onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));
 	};
 
-	onItalicClick = () => {
-		this.onChange(
-			RichUtils.toggleInlineStyle(this.state.editorState, "ITALIC")
+	const onItalicClick = () => {
+		onChange(
+			RichUtils.toggleInlineStyle(editorState, "ITALIC")
 		);
 	};
 
-	render() {
-		return (
-			<div className="editorContainer">
-				<button onClick={this.onUnderlineClick}>U</button>
-				<button onClick={this.onBoldClick}>
-					<b>B</b>
-				</button>
-				<button onClick={this.onItalicClick}>
-					<em>I</em>
-				</button>
-				<div className="editors">
-					<EditorDraftJS
-						editorState={this.state.editorState}
-						handleKeyCommand={this.handleKeyCommand}
-						onChange={this.onChange}
-					/>
-				</div>
+	return (
+		<div className="editorContainer">
+			<button onClick={onUnderlineClick}>U</button>
+			<button onClick={onBoldClick}>
+				<b>B</b>
+			</button>
+			<button onClick={onItalicClick}>
+				<em>I</em>
+			</button>
+			<button onClick={handleReset}>Reset</button>
+			<div className="editors">
+				<EditorDraftJS
+					editorState={editorState}
+					handleKeyCommand={handleKeyCommand}
+					onChange={onChange}
+				/>
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 export default Editor;
