@@ -4,52 +4,44 @@ import createSagaMiddleware from "redux-saga";
 import counterReducer from "../features/counter/counterSlice";
 import editorReducer from "../features/editor/editorSlice";
 import peopleReducer from "../features/peopleList/peopleListSlice";
-import { peopleSaga } from "../features/peopleList/peopleListSaga";
+import { rootSaga } from "./rootSaga";
 
-// import {
-//   createReducer,
-//   createSliceInjector,
-//   createSagaInjector,
-// } from "./storeInjectors";
+import {
+  createReducer,
+  createSliceInjector,
+  createSagaInjector,
+} from "./storeInjectors";
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-    editor: editorReducer,
-    people: peopleReducer,
-  },
-  middleware: () => [sagaMiddleware],
-});
+function createStore() {
+  const store = {
+    ...configureStore({
+      reducer: createReducer({
+        counter: counterReducer,
+        editor: editorReducer,
+        people: peopleReducer,
+      }),
+      middleware: () => [sagaMiddleware],
+      devTools: {
+        name: ` Store (${window.location.hostname})`,
+        trace: true,
+        maxAge: 500,
+      },
+    }),
+    runSaga: sagaMiddleware.run,
+  };
 
-sagaMiddleware.run(peopleSaga);
+  store.injectSlices = createSliceInjector({
+    replaceReducer: store.replaceReducer,
+  });
 
-// function createStore() {
-//   const store = {
-//     ...configureStore({
-//       reducer: createReducer({
-//         counter: counterReducer,
-//       }),
-//       middleware: () => [sagaMiddleware],
-//       devTools: {
-//         name: ` Store (${window.location.hostname})`,
-//         trace: true,
-//         maxAge: 500,
-//       },
-//     }),
-//     runSaga: sagaMiddleware.run,
-//   };
+  store.injectSaga = createSagaInjector({
+    runSaga: sagaMiddleware.run,
+    rootSaga,
+  });
 
-//   store.injectSlices = createSliceInjector({
-//     replaceReducer: store.replaceReducer,
-//   });
+  return store;
+}
 
-//   store.injectSaga = createSagaInjector({
-//     runSaga: sagaMiddleware.run,
-//   });
-
-//   return store;
-// }
-
-// export default createStore();
+export default createStore();

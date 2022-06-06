@@ -13,5 +13,6 @@ function* fetchAndStorePeople() {
 }
 
 export function* peopleSaga() {
+  console.log('starting peopleSaga');
   yield takeLatest(triggerFetchPeople, fetchAndStorePeople);
 }

@@ -1,4 +1,4 @@
-import { Box, Button, Modal } from '@sproutsocial/racine';
+import { Box, Button } from '@sproutsocial/racine';
 import {useState} from 'react';
 // Phase 1 lazy load modals
 import CounterModal from '../features/counter/CounterModal';

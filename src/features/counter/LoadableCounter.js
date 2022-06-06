@@ -1,5 +1,4 @@
-import { Suspense } from 'react'
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 
 // Phase 3 inject reducer
 const loadCounter = () => import('./Counter')

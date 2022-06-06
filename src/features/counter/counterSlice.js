@@ -23,10 +23,11 @@ export const counterSlice = createSlice({
       const currentValue = selectCounterValue(state);
       state.value = currentValue + action.payload;
     },
+    triggerIncrementAsync: state => state,
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount, triggerIncrementAsync } = counterSlice.actions
 
 export default counterSlice.reducer
