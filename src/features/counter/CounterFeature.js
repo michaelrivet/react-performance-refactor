@@ -4,16 +4,17 @@ import { Box, Button, Text } from '@sproutsocial/racine';
 import { decrement, increment, triggerIncrementAsync } from './counterSlice'
 import {selectCounterValue} from './selectors';
 
-console.log('loading Counter Modal Content')
-export function Counter() {
+console.log('loading CounterFeature');
+
+export function CounterFeature() {
 	useEffect(() => {
-		console.log('Rendering Counter Modal Content');
+		console.log('Rendering CounterFeature');
 	}, []);
   const count = useSelector(selectCounterValue)
   const dispatch = useDispatch()
 
   return (
-    <Box>
+		<Box p={600}>
       <Box>
         <Button appearance='primary'
           aria-label="Increment value"
@@ -40,4 +41,4 @@ export function Counter() {
   )
 }
 
-export default Counter;
+export default CounterFeature;

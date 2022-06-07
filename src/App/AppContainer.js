@@ -1,10 +1,11 @@
 
-import { useEffect,  } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { triggerFetchPeople } from '../features/peopleList/peopleListSlice';
 import { AppLoadingState } from './AppLoadingState';
 // TODO: Lazy Load this?
-import PeopleList from '../features/peopleList/PeopleList';
+// import PeopleList from '../features/peopleList/PeopleList';
+const PeopleList = lazy(() => import(/* webpackChunkName: 'PeopleList' */ '../features/peopleList/PeopleList'))
 
 export const AppContainer = () => {
     const dispatch = useDispatch();

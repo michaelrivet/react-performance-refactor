@@ -14,14 +14,16 @@ import {
 
 const sagaMiddleware = createSagaMiddleware();
 
+const rootReducers = {
+  counter: counterReducer,
+  editor: editorReducer,
+  people: peopleReducer,
+};
+
 function createStore() {
   const store = {
     ...configureStore({
-      reducer: createReducer({
-        counter: counterReducer,
-        editor: editorReducer,
-        people: peopleReducer,
-      }),
+      reducer: createReducer(rootReducers),
       middleware: () => [sagaMiddleware],
       devTools: {
         name: ` Store (${window.location.hostname})`,
@@ -34,6 +36,7 @@ function createStore() {
 
   store.injectSlices = createSliceInjector({
     replaceReducer: store.replaceReducer,
+    staticReducers: rootReducers,
   });
 
   store.injectSaga = createSagaInjector({

@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { Editor as EditorDraftJS, RichUtils } from "draft-js";
 import { useSelector, useDispatch } from "react-redux";
+import { Box } from '@sproutsocial/racine'
 import {change, reset} from './editorSlice';
 
-console.log('loading Editor Modal Content');
-const Editor = () => {
+console.log('loading EditorFeature');
+
+const EditorFeature = () => {
 	useEffect(() => {
-		console.log('Rendering Editor Modal Content');
+		console.log('Rendering EditorFeature');
 	}, []);
 	const dispatch = useDispatch();
 	const editorState = useSelector(state => state.editor.editorState);
@@ -48,7 +50,7 @@ const Editor = () => {
 	};
 
 	return (
-		<div className="editorContainer">
+		<Box className="editorContainer" p={600}>
 			<button onClick={onUnderlineClick}>U</button>
 			<button onClick={onBoldClick}>
 				<b>B</b>
@@ -64,8 +66,8 @@ const Editor = () => {
 					onChange={onChange}
 				/>
 			</div>
-		</div>
+		</Box>
 	);
 }
 
-export default Editor;
+export default EditorFeature;
