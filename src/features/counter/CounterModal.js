@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Modal } from '@sproutsocial/racine';
-// Phase 2 lazy load these
+// Phase 2 lazy load features
 import CounterFeature from './CounterFeature';
 // import {LoadableCounterFeature} from './LoadableCounterFeature'
 

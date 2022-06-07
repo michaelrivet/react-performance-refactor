@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Modal } from '@sproutsocial/racine';
-import Editor from './EditorFeature';
-// Phase 2 lazy load these
+import EditorFeature from './EditorFeature';
+// Phase 2 lazy load features
 // import {LoadableEditorFeature} from './LoadableEditorFeature'
 
 console.log('loading EditorModal');
@@ -16,7 +16,7 @@ export const EditorModal = ({isOpen, onClose}) => {
             subtitle="Some feature that has a draft-js editor."
         />
         <Modal.Content>
-            <Editor />
+            <EditorFeature />
         </Modal.Content>    
     </Modal>
 }

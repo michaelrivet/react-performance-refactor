@@ -15,8 +15,25 @@ export const Layout = ({children}) => {
             <Suspense fallback={<div />}>
                 <Box width={1200} margin='auto' pt={400}>
                     <Box>
-                        <Button appearance='primary' onClick={() => setModalState('counter')}>Open Counter</Button>
-                        <Button appearance='secondary'  onClick={() => setModalState('editor')} ml={300}>Open Editor</Button>
+                        <Button 
+                            appearance='primary'
+                            onClick={() => setModalState('counter')}
+                            onMouseOver={() => {
+                                // Phase 4 call preload
+                            }}
+                        >
+                            Open Counter
+                        </Button>
+                        <Button
+                            ml={300}
+                            appearance='secondary'
+                            onClick={() => setModalState('editor')}
+                            onMouseOver={() => {
+                                // Phase 4 call preload
+                            }}
+                        >
+                            Open Editor
+                        </Button>
                     </Box>
                     {children}
                     <CounterModal isOpen={modalState === 'counter'} onClose={() => setModalState(null)} />
