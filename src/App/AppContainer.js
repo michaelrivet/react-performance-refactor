@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { triggerFetchPeople } from '../features/peopleList/peopleListSlice';
 import { AppLoadingState } from './AppLoadingState';
 // Phase 5 Lazy Load PeopleList
-// import PeopleList from '../features/peopleList/PeopleList';
-const PeopleList = lazy(() => import(/* webpackChunkName: 'PeopleList' */ '../features/peopleList/PeopleList'))
+import PeopleList from '../features/peopleList/PeopleList';
+// const PeopleList = lazy(() => import(/* webpackChunkName: 'PeopleList' */ '../features/peopleList/PeopleList'))
 
 export const AppContainer = () => {
     const dispatch = useDispatch();
