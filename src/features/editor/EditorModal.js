@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Modal } from '@sproutsocial/racine';
 import EditorFeature from './EditorFeature';
 // Phase 2 lazy load features
-// import {LoadableEditorFeature} from './LoadableEditorFeature'
+// import {LoadableEditorFeature as EditorFeature} from './LoadableEditorFeature'
 
 console.log('loading EditorModal');
 export const EditorModal = ({isOpen, onClose}) => {

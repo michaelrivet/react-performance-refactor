@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Modal } from '@sproutsocial/racine';
 // Phase 2 lazy load features
 import CounterFeature from './CounterFeature';
-// import {LoadableCounterFeature} from './LoadableCounterFeature'
+// import {LoadableCounterFeature as CounterFeature} from './LoadableCounterFeature'
 
 console.log('loading CounterModal');
 export const CounterModal = ({isOpen, onClose}) => {

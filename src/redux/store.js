@@ -15,9 +15,10 @@ import {
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducers = {
+  people: peopleReducer,
+  // Phase 3 comment out reducers
   counter: counterReducer,
   editor: editorReducer,
-  people: peopleReducer,
 };
 
 function createStore() {
